@@ -1,0 +1,41 @@
+@import "./header/header.css";
+@import "./hero/hero.css";
+
+:root{
+    --primary-color: #FF6464;
+    --secondary-color: #00A8CC;
+    --dark-color: #21243D;
+    --light-color: #8695A4;
+}
+ @font-face {
+    font-family: "Heebo";
+    src: url("./fonts/Heebo-VariableFont_wght.ttf" );
+ }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    font-family: "Heebo", sans-serif;
+    font-size: 1.6rem;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+main{
+    width: 100%;
+    max-width: 855px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+}
