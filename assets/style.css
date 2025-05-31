@@ -1,5 +1,6 @@
 @import "./header/header.css";
 @import "./hero/hero.css";
+@import "./skills/skills.css";
 
 :root{
     --primary-color: #FF6464;
