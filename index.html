@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi, I am John,
+    <title>Hi, I am Licenciado Miauricio,
         Creative Technologist</title>
     <link rel="stylesheet" href="./assets/style.css">
+    <script type="module" src="./scrtipt.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
     <main>
         <section class="hero">
             <article class="hero___content">
-                <h1 class="hero__title">Hi, I am John,
+                <h1 class="hero__title">Hi, I am Licenciado Miauricio,
                     Creative Technologist</h1>
                 <p class="hero__description">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
                     Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
@@ -42,30 +43,21 @@
             <h2 class="projects__title">Projects</h2>
             <div class="projects__container">
                 <ul class="projects__list">
-                    <li class="projects__card">
-                        <div><img src="" alt="" class="card__img"></div>
-                        <div class="card__content">
-                            <h3 class="card__title">Project 1</h3>
-                            <div class="card__container">
-                                <date class="card__date">2023</date>
-                                <ul class="card__skills">
-                                    <li>
-                                        <span>skil-1</span>
-                                        <span>skil-2</span>
-                                        <span>skil-3</span>
-                                    </li>
-                                </ul>
-                            </div>
 
-                            <p class="card__description">Description of project 1.</p>
-                            <a href="#" class="card__link">View Project</a>
-                    </li>
+                    <project-card title="patata" src="./assets/images/naruto.jpg">
+                        <ul class="card__skills" slot="skills">
+                            <li>skil-1</li>
+                            <li>skil-2</li>
+                            <li>skil-3</li>
+                        </ul>
+                    </project-card>
+
                 </ul>
             </div>
         </section>
     </main>
     <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
-    <script type="module" src="./scrtipt.js"></script>
+
 </body>
 
 </html>
