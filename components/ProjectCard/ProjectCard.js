@@ -1,60 +1,47 @@
-const projecCardTemplate = document.createElement("template");
-projecCardTemplate.innerHTML = `
-    <link rel="stylesheet" href="/components/ProjectCard/ProjectCard.css">
+import { PortfolioData, skillsI } from "../../assets/portfolio/portfolio.js";
+const portfolioSection = document.querySelector(".projects__list");
+
+const projectCardTemplate = ({
+  title,
+  imgSrc,
+  desc,
+  demoURL,
+  repoURL,
+  skillIcons,
+}) => /*html*/ `
+
      <li class="projects__card">
         <div class="card__img-container">
-            <img   alt="" class="card__img">
+            <img  src="${imgSrc}" alt="${title}" class="card__img">
         </div>
         <div class="card__content">
-            <h3 class="card__title">Project 1</h3>
+            <h3 class="card__title">${title}</h3>
             <div class="card__container">
-                <date class="card__date">2023</date>
-                <slot name="skills"></slot>
+                <ul>
+                  ${skillIcons
+                    .map((skill) => {
+                      return /*html*/ `<li class="card__skill">
+                        <iconify-icon icon="${skillsI[skill]}" class="card__skill-icon" with="30" height="30"/>
+                      </li>`;
+                    })
+                    .join("")}
+                </ul>
             </div>
-        <p class="card__description"><slot name="description"></slot></p>
-        <a href="#" class="card__link">View Project</a>
+        <p class="card__description">${desc}</p>
+        <div class="card__buttons">
+            <a href="${demoURL}" class="card__button card__button--demo" target="_blank">Demo</a>
+            <a href="${repoURL}" class="card__button card__button--repo" target="_blank">Repo</a>
      </li>
-`;
+     `;
+let projects = PortfolioData.map((project, i) => {
+  return projectCardTemplate({
+    title: project.title,
+    desc: project.desc,
+    demoURL: project.demoURL || "#",
+    repoURL: project.repoURL || "#",
+    imgSrc: project.imgSrc || `https://picsum.photos/200/30${i}`,
+    skillIcons: project.skill,
+  });
+});
 
-class ProjectCard extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-    this.title = this.getAttribute("title") || "";
-    this.src = this.getAttribute("src") || "";
-    this.alt = this.getAttribute("alt") || "";
-    this.href = this.getAttribute("href") || "";
-
-    this.template = projecCardTemplate;
-    this.cloneDom = this.template.content.cloneNode(true);
-  }
-  connectedCallback() {
-    this.render();
-  }
-
-  render() {
-    this.shadowRoot.appendChild(this.cloneDom);
-    let element = this.shadowRoot.querySelector(".card__title");
-    let imgElement = this.shadowRoot.querySelector(".card__img");
-    let altImgElement = this.shadowRoot.querySelector(".card__img");
-    let hrefElement = this.shadowRoot.querySelector(".card__link");
-    imgElement.src = this.src;
-    element.innerText = this.title;
-    altImgElement.alt = this.alt;
-    hrefElement.href = this.href;
-  }
-
-
-//   attributeChangedCallback(name, oldValue, newValue) {
-//     if (name === "title" && oldValue !== newValue) {
-//       this.title = newValue;
-//       this.render();
-//     }
-//   }
-
-  static get observedAttributes() {
-    return ["title", "src", "alt"];
-  }
-}
-
-customElements.define("project-card", ProjectCard);
+portfolioSection.innerHTML = projects.join("");
